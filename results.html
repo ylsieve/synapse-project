@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Research Results | Synapse</title>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-light bg-white border-bottom mb-4">
+        <div class="container"><a class="navbar-brand fw-bold" href="/">SYNAPSE</a></div>
+    </nav>
+
+    <div class="container">
+        <h1 class="text-center fw-bold mb-4">Community Insights</h1>
+        
+        <div class="row text-center mb-5">
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h2 class="text-primary fw-bold">{{ count }}</h2>
+                        <p class="text-muted">Total Participants</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm border-primary">
+                    <div class="card-body">
+                        <h2 class="text-primary fw-bold">{{ avg_mood }} / 10</h2>
+                        <p class="text-muted">Average Mood Score</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h2 class="text-danger fw-bold">{{ heavy_users }}</h2>
+                        <p class="text-muted">High-Usage Users (45m+)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-header bg-dark text-white">Raw Research Data</div>
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th>Entry ID</th>
+                            <th>Mood</th>
+                            <th>Usage Time</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for entry in entries %}
+                        <tr>
+                            <td>#{{ entry.id }}</td>
+                            <td>{{ entry.mood }}</td>
+                            <td>{{ entry.usage }} mins</td>
+                            <td>{{ entry.timestamp.strftime('%H:%M - %b %d') }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="text-center mt-5 pb-5">
+            <a href="/" class="btn btn-outline-primary">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>
